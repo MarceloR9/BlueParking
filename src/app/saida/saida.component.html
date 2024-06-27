@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Saída de Veículo:</h2>
+  <div class="search-container">
+    <input type="text" [(ngModel)]="placaFiltro" placeholder="Digite a placa">
+    <button (click)="buscarVeiculo()" class="search-button">Buscar</button>
+  </div>
+
+  <div *ngIf="veiculoSelecionado" class="placa-selecionada">
+    <span>Placa encontrada: {{ veiculoSelecionado.placa }}</span>
+    <button (click)="registrarSaida(veiculoSelecionado.placa)">Registrar Saída</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let veiculo of veiculos">
+      <span>{{ veiculo.placa }} </span>
+      <span>{{ veiculo.tipo }}</span>
+      <span>{{ veiculo.horaEntrada | date: ' dd/MM/yyyy HH:mm:ss' }}</span>
+      <button (click)="registrarSaida(veiculo.placa)">Registrar Saida</button>
+    </li>
+  </ul>
+
+  <div *ngIf="veiculoSaida" class="modal">
+    <div class="modal-content">
+      <h2>Detalhes da Saída:</h2>
+      <p>Placa: {{ veiculoSaida.placa }}</p>
+      <p>Tempo: {{ veiculoSaida.tempo.toFixed(2) }} horas</p>
+      <p>Preço: R$ {{ veiculoSaida.preco.toFixed(2) }}</p>
+      <button (click)="fecharDetalhesSaida()">Fechar</button>
+    </div>
+  </div>
+
+  <button routerLink="/">Voltar</button>
+</div>

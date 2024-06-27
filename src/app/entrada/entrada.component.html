@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Entrada de Veículo</h2>
+  <form (ngSubmit)="registrarEntrada()">
+    <label for="placa">Placa: </label>
+    <input id="placa" [(ngModel)]="placa" name="placa" required>
+
+    <label for="tipo"> Tipo: </label>
+    <select id="tipo" [(ngModel)]="tipo" name="tipo">
+      <option value="carro">Carro</option>
+      <option value="moto">Moto</option>
+    </select>
+
+    <button type="submit">Registrar Entrada</button>
+  </form>
+
+  <div *ngIf="mensagem" class="modal">
+    <div class="modal-content">
+      <h2>Sucesso</h2>
+      <p>{{ mensagem }}</p>
+      <button (click)="fecharMensagem()">OK</button>
+    </div>
+  </div>
+
+  <button routerLink="/">Voltar</button>
+</div>
